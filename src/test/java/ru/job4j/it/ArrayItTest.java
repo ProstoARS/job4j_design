@@ -13,6 +13,7 @@ public class ArrayItTest {
                 new int[] {1, 2, 3}
         );
         assertThat(it.hasNext(), is(true));
+        assertThat(it.hasNext(), is(true));
     }
 
     @Test
