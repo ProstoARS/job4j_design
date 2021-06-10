@@ -16,18 +16,18 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void set(int index, T model) {
-        int in = Objects.checkIndex(index, array.length);
+        int in = Objects.checkIndex(index, pointer);
         array[in] = model;
     }
 
     public void remove(int index) {
-        int in = Objects.checkIndex(index, array.length);
+        int in = Objects.checkIndex(index, pointer);
         System.arraycopy(array, index + 1, array, index, pointer);
         this.pointer--;
     }
 
     public T get(int index) {
-        int in = Objects.checkIndex(index, array.length);
+        int in = Objects.checkIndex(index, pointer);
         return array[in];
     }
 
@@ -35,4 +35,5 @@ public class SimpleArray<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         return new SimpleArrayIterator<>(array);
     }
+
 }
