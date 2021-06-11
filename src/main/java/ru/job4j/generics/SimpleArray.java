@@ -33,7 +33,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new SimpleArrayIterator<>(array);
+        return new SimpleArrayIterator<>(array, pointer);
     }
 
 }

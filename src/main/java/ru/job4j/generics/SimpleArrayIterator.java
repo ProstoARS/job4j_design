@@ -7,13 +7,15 @@ import java.util.NoSuchElementException;
 public class SimpleArrayIterator<E> implements Iterator<E> {
     private final E[] data;
     private int index = 0;
+    private int pointer = 0;
 
-    public SimpleArrayIterator(E[] data) {
+    public SimpleArrayIterator(E[] data, int pointer) {
         this.data = data;
+        this.pointer = pointer;
     }
 
     public boolean hasNext() {
-        return index < data.length;
+        return index < pointer;
     }
 
     @Override
