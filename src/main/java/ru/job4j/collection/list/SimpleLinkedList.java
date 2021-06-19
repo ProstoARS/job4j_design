@@ -53,9 +53,7 @@ public class SimpleLinkedList<E> implements List<E> {
             this.nextElement = nextElement;
             this.prevElement = prevElement;
         }
-        public void setCurrentElement(E currentElement) {
-            this.currentElement = currentElement;
-        }
+
         public void setNextElement(Node<E> nextElement) {
             this.nextElement = nextElement;
         }
