@@ -33,12 +33,9 @@ public class SimpleLinkedList<E> implements List<E> {
         int in = Objects.checkIndex(index, size);
         Node<E> temp = fstNode;
         for (int i = 0; i <= in; i++) {
-            if (i == in) {
-                return temp.getNextElement().getCurrentElement();
-            }
-            temp.setNextElement(temp.getNextElement().getNextElement());
+            temp = temp.getNextElement();
         }
-        return null;
+        return temp.getCurrentElement();
     }
 
     @Override
@@ -47,7 +44,7 @@ public class SimpleLinkedList<E> implements List<E> {
     }
 
     private static class Node<E> {
-        private final E currentElement;
+        private E currentElement;
         private Node<E> nextElement;
         private Node<E> prevElement;
 
@@ -56,7 +53,9 @@ public class SimpleLinkedList<E> implements List<E> {
             this.nextElement = nextElement;
             this.prevElement = prevElement;
         }
-
+        public void setCurrentElement(E currentElement) {
+            this.currentElement = currentElement;
+        }
         public void setNextElement(Node<E> nextElement) {
             this.nextElement = nextElement;
         }
@@ -91,10 +90,7 @@ public class SimpleLinkedList<E> implements List<E> {
             if (modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
             } else {
-                if (temp.getNextElement() == lstNode) {
-                    return false;
-                }
-                return true;
+                return temp.getNextElement() != lstNode;
             }
         }
 
