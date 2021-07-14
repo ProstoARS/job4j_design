@@ -8,14 +8,18 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-            for (int i = 0; i < index; i++) {
+        T temp = null;
+        for (int i = 0; i < index * 2 - 1; i++) {
+            if (i < index) {
                 out.push(in.pop());
+            } else {
+                in.push(out.pop());
             }
-            T temp = out.pop();
-            index--;
-        for (int i = 0; i < index; i++) {
-            in.push(out.pop());
+            if (i == index - 1) {
+                temp = out.pop();
+            }
         }
+        index--;
         return temp;
     }
 
