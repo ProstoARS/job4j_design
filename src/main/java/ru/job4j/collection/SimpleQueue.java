@@ -9,15 +9,6 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-//        for (int i = 0; i < index; i++) {
-//            out.push(in.pop());
-//        }
-//        T temp = out.pop();
-//        index--;
-//        for (int i = 0; i < index; i++) {
-//            in.push(out.pop());
-//        }
-//        return temp;
         if (indexOut == 0) {
             while (indexIn != 0) {
                out.push(in.pop());
