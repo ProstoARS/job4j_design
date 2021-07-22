@@ -42,27 +42,21 @@ public class ListUtils {
         ListIterator<T> i = list.listIterator();
         while (i.hasNext()) {
             if (filter.test(i.next())) {
-                i.remove();
-                i.add(value);
+                i.set(value);
             }
         }
     }
 
     public static <T> void removeAll(List<T> list, List<T> elements) {
         ListIterator<T> i = list.listIterator();
-        ListIterator<T> l = elements.listIterator();
         while (i.hasNext()) {
-            while (l.hasNext()) {
-                if (i.next().equals(l.next())) {
-                    i.remove();
-                }
-                i.previous();
+            if (elements.contains(i.next())) {
+                i.remove();
             }
-            while (l.hasPrevious()) {
-                l.previous();
-            }
+            i.previous();
             i.next();
         }
     }
-
 }
+
+
