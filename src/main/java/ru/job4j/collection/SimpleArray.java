@@ -10,7 +10,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     private int modCount = 0;
 
-    SimpleArray() {
+    public SimpleArray() {
         data = (T[]) new Object[1];
     }
 
@@ -61,3 +61,4 @@ public class SimpleArray<T> implements Iterable<T> {
         }
     }
 }
+
