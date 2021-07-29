@@ -22,12 +22,7 @@ public class SimpleSet<T> implements Set<T> {
     public boolean contains(T value) {
         Iterator<T> it = set.iterator();
         while (it.hasNext()) {
-            T t = it.next();
-            if (t != null) {
-                if (t.equals(value)) {
-                    return true;
-                }
-            } else {
+            if (Objects.equals(it.next(), value)) {
                 return true;
             }
         }
