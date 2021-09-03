@@ -1,6 +1,7 @@
 package ru.job4j.collection.map;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -18,8 +19,8 @@ public class SimpleMapTest {
     @Test
     public void whenPutTwiceWhenFalse() {
         SimpleMap<String, Integer> map = new SimpleMap<>();
-        assertTrue(map.put("one", 1));
-        assertTrue(map.put("two", 2));
+        map.put("one", 1);
+        map.put("two", 2);
         assertFalse(map.put("two", 2));
     }
 
@@ -50,7 +51,48 @@ public class SimpleMapTest {
         map.put("one", 1);
         map.put("two", 2);
         assertTrue(map.remove("one"));
+    }
+
+    @Test
+    public void whenRemoveWenNull() {
+        SimpleMap<String, Integer> map = new SimpleMap<>();
+        map.put("one", 1);
+        map.put("two", 2);
+        map.remove("one");
         assertThat(null, is(map.get("one")));
+    }
+
+    @Test
+    public void whenRemoveWenSize() {
+        SimpleMap<String, Integer> map = new SimpleMap<>();
+        map.put("one", 1);
+        map.put("two", 2);
+        map.remove("one");
         assertThat(1, is(map.size()));
+    }
+
+    @Test
+    public void whenRemoveIfNoElement() {
+        SimpleMap<String, Integer> map = new SimpleMap<>();
+        map.put("one", 1);
+        map.put("two", 2);
+        assertFalse(map.remove("three"));
+    }
+
+    @Test
+    public void whenPutIfSameBucket() {
+        SimpleMap<String, Integer> map = new SimpleMap<>();
+        map.put("two", 2);
+        assertFalse(map.put("four", 4));
+    }
+
+    @Test
+    public void whenPutAndRemoveAndPut() {
+        SimpleMap<Integer, String> map = new SimpleMap<>();
+        map.put(2, "two");
+        map.remove(2);
+        map.put(2, "два");
+        String rsl = "два";
+        assertThat(rsl, is(map.get(2)));
     }
 }

@@ -26,6 +26,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
             }
         }
         int index = indexFor(hash(h));
+        System.out.println(index);
         if (table[index] == null) {
             table[index] = map;
             count++;
@@ -85,7 +86,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public Iterator<K> iterator() {
-        return new Iterator<K>() {
+        return new Iterator<>() {
             int point = 0;
             final int expectedModCount = count;
 
@@ -94,8 +95,8 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
                 }
-                for (int i = 0; i < table.length; i++) {
-                    if (table[i] != null) {
+                for (MapEntry<K, V> kvMapEntry : table) {
+                    if (kvMapEntry != null) {
                         return true;
                     }
                     point++;
