@@ -29,7 +29,7 @@ public class SimpleMapTest {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("one", 1);
         map.put("two", 2);
-        map.put("three", 3);
+        map.put("three ", 3);
         map.put("four ", 4);
         map.put("five ", 5);
         map.put("six ", 6);
@@ -82,7 +82,7 @@ public class SimpleMapTest {
     @Test
     public void whenPutIfSameBucket() {
         SimpleMap<String, Integer> map = new SimpleMap<>();
-        map.put("two", 2);
+        map.put("six ", 6);
         assertFalse(map.put("four", 4));
     }
 
