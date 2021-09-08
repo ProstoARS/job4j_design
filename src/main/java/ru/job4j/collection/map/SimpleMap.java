@@ -40,8 +40,17 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     private void expand() {
         if (count > table.length * LOAD_FACTOR) {
+            count = 0;
             MapEntry<K, V>[] temp = table;
-            table = Arrays.copyOf(temp, temp.length * 2);
+            table = new MapEntry[table.length * 2];
+            for (MapEntry<K, V> kvMapEntry : temp) {
+                if (kvMapEntry != null) {
+                    put(kvMapEntry.key, kvMapEntry.value);
+                }
+            }
+//            table = Arrays.copyOf(temp, temp.length * 2);
+
+
         }
     }
 
