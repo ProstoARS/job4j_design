@@ -48,9 +48,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
                     put(kvMapEntry.key, kvMapEntry.value);
                 }
             }
-//            table = Arrays.copyOf(temp, temp.length * 2);
-
-
         }
     }
 
