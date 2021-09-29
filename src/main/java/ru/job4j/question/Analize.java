@@ -24,7 +24,7 @@ public class Analize {
             for (User rsl : temp) {
                 if (!map.containsKey(rsl.getId())) {
                     add++;
-                } else if (!map.containsValue(rsl.getName())) {
+                } else if (!map.get(rsl.getId()).equals(rsl.getName())) {
                     change++;
                 } else if (!current.contains(rsl)) {
                     origins++;
