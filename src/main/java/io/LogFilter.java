@@ -12,12 +12,9 @@ public class LogFilter {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             list = in.lines()
                     .filter(line -> {
-                        int index = line.lastIndexOf("404");
-                        if (index > 0) {
-                           String str = line.substring(index);
-                           return str.length() > 5;
-                        }
-                        return false;
+                        String[] subLine = line.split(" ");
+                        return subLine[subLine.length - 2].equals("404")
+                                && subLine[subLine.length - 1].length() > 1;
                     })
                     .map(a -> a + System.lineSeparator())
                     .collect(Collectors.toList());
