@@ -11,7 +11,15 @@ public class LogFilter {
         List<String> list = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             list = in.lines()
-                    .filter(line -> line.contains("404") && !line.endsWith("-"))
+                    .filter(line -> {
+                        int index = line.lastIndexOf("404");
+                        if (index > 0) {
+                           String str = line.substring(index);
+                           return str.length() > 5;
+                        }
+                        return false;
+                    })
+                    .map(a -> a + System.lineSeparator())
                     .collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
