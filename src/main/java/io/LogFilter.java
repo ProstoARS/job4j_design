@@ -13,8 +13,7 @@ public class LogFilter {
             list = in.lines()
                     .filter(line -> {
                         String[] subLine = line.split(" ");
-                        return subLine[subLine.length - 2].equals("404")
-                                && subLine[subLine.length - 1].length() > 1;
+                        return subLine[subLine.length - 2].equals("404");
                     })
                     .map(a -> a + System.lineSeparator())
                     .collect(Collectors.toList());
