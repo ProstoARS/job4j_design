@@ -7,15 +7,15 @@ import static org.junit.Assert.assertThat;
 public class ConfigTest {
     @Test
     public void whenPairWithoutComment() {
-        String path = "C:\\IdeaProjects\\job4j_design\\data\\pair_without_comment.properties.properties";
+        String path = "./data/pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("name"), is("Arseny Sudakov"));
     }
 
     @Test
-    public void whenPairWithoutCommentAndEmtyLine() {
-        String path = "C:\\IdeaProjects\\job4j_design\\data\\pairWithoutCommentAndEmtyLine.properties";
+    public void whenPairWithoutCommentAndEmptyLine() {
+        String path = "./data/pairWithoutCommentAndEmptyLine.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("name"), is("Arseny Sudakov"));
@@ -23,7 +23,7 @@ public class ConfigTest {
 
     @Test (expected = IllegalArgumentException.class)
     public void whenPairViolation() {
-        String path = "C:\\IdeaProjects\\job4j_design\\data\\pairViolation.properties";
+        String path = "./data/pairViolation.properties";
         Config config = new Config(path);
         config.load();
     }
