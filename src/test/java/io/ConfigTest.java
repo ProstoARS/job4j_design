@@ -1,6 +1,7 @@
 package io;
 
 import org.junit.Test;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -21,16 +22,30 @@ public class ConfigTest {
         assertThat(config.value("name"), is("Arseny Sudakov"));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void whenPairViolation() {
         String path = "./data/pairViolation.properties";
         Config config = new Config(path);
         config.load();
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void whenNoSeparator() {
         String path = "./data/noSeparator.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenKeyNull() {
+        String path = "./data/keyNull.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenTwoSeparator() {
+        String path = "./data/twoSeparator.properties";
         Config config = new Config(path);
         config.load();
     }

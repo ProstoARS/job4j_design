@@ -3,10 +3,7 @@ package io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Config {
@@ -23,11 +20,11 @@ public class Config {
             values = read.lines()
                     .filter(a -> !a.startsWith("#") && !a.isEmpty())
                     .collect(Collectors.toMap(a -> {
-                        if (!a.contains("=")) {
+                        if (!a.contains("=") || a.contains("==")) {
                             throw new IllegalArgumentException();
                         }
                         String[] subStr = a.split("=");
-                        if (subStr[0] == null || subStr[0].equals(" ")) {
+                        if (Objects.equals(subStr[0], " ") || subStr[0].equals("")) {
                             throw new IllegalArgumentException();
                         }
                         return subStr[0];
