@@ -49,4 +49,11 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenTwoSeparatorAnotherPlace() {
+        String path = "./data/twoSeparatorAnotherPlace.properties";
+        Config config = new Config(path);
+        config.load();
+    }
 }

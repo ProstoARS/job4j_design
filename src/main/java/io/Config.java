@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Config {
 
     private final String path;
-    private Map<String, String> values = new HashMap<>();
+    private final Map<String, String> values = new HashMap<>();
 
     public Config(final String path) {
         this.path = path;
@@ -17,21 +16,19 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            values = read.lines()
-                    .filter(a -> !a.startsWith("#") && !a.isEmpty())
-                    .collect(Collectors.toMap(a -> {
-                        if (!a.contains("=") || a.contains("==")) {
-                            throw new IllegalArgumentException();
-                        }
-                        String[] subStr = a.split("=");
-                        if (Objects.equals(subStr[0], " ") || subStr[0].equals("")) {
-                            throw new IllegalArgumentException();
-                        }
-                        return subStr[0];
-                    }, a -> {
-                        String[] subStr = a.split("=");
-                        return subStr[1];
-                    }));
+            for (String line = read.readLine(); line != null; line = read.readLine()) {
+                if (line.startsWith("#") || line.isEmpty()) {
+                    continue;
+                }
+                if (!line.contains("=")) {
+                    throw new IllegalArgumentException();
+                }
+                String[] subStr = line.split("=");
+                if (Objects.equals(subStr[0], " ") || subStr[0].equals("") || subStr.length > 2) {
+                    throw new IllegalArgumentException();
+                }
+                values.put(subStr[0], subStr[1]);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
