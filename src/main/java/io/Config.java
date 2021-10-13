@@ -23,6 +23,9 @@ public class Config {
             values = read.lines()
                     .filter(a -> !a.startsWith("#") && !a.isEmpty())
                     .collect(Collectors.toMap(a -> {
+                        if (!a.contains("=")) {
+                            throw new IllegalArgumentException();
+                        }
                         String[] subStr = a.split("=");
                         if (subStr[0] == null || subStr[0].equals(" ")) {
                             throw new IllegalArgumentException();

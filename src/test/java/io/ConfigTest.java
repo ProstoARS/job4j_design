@@ -27,4 +27,11 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void whenNoSeparator() {
+        String path = "./data/noSeparator.properties";
+        Config config = new Config(path);
+        config.load();
+    }
 }
