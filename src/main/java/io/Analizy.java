@@ -3,32 +3,28 @@ package io;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Analizy {
     public void unavailable(String source, String target) {
-        List<String[]> listStrings = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(source))) {
-            listStrings = in.lines().map(a -> a.split(" "))
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         List<String> listLog = new ArrayList<>();
-        String temp = null;
-        for (String[] str : listStrings) {
-            if (temp != null) {
-                if (str[0].equals("400") || str[0].equals("500")) {
-                    continue;
-                } else {
-                    listLog.add(str[1] + ";");
-                    temp = null;
+        try (BufferedReader in = new BufferedReader(new FileReader(source))) {
+            String temp = null;
+            for (String line = in.readLine(); line != null; line = in.readLine()) {
+                if (temp != null) {
+                    if (line.startsWith("400") || line.startsWith("500")) {
+                        continue;
+                    } else {
+                        listLog.add(line.substring(line.indexOf(" ") + 1) + ";");
+                        temp = null;
+                    }
+                }
+                if (line.startsWith("400") || line.startsWith("500")) {
+                    temp = line;
+                    listLog.add(line.substring(line.indexOf(" ") + 1) + ";");
                 }
             }
-            if (str[0].equals("400") || str[0].equals("500")) {
-                temp = str[0];
-                listLog.add(str[1] + ";");
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         try (PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
             for (int i = 0; i < listLog.size(); i += 2) {
@@ -40,11 +36,7 @@ public class Analizy {
     }
 
     public static void main(String[] args) {
-        try (PrintWriter out = new PrintWriter(new FileOutputStream("unavailable.csv"))) {
-            out.println("15:01:30;15:02:32");
-            out.println("15:10:30;23:12:32");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Analizy log = new Analizy();
+        log.unavailable("./data/server.log", "./data/analysis.csv");
     }
 }
