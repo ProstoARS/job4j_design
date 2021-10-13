@@ -7,7 +7,8 @@ import java.util.List;
 public class Analizy {
     public void unavailable(String source, String target) {
         List<String> listLog = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(source))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(source));
+             PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
             String temp = null;
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 if (temp != null) {
@@ -23,14 +24,10 @@ public class Analizy {
                     listLog.add(line.substring(line.indexOf(" ") + 1) + ";");
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try (PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
             for (int i = 0; i < listLog.size(); i += 2) {
                 out.println(listLog.get(i) + listLog.get(i + 1));
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
