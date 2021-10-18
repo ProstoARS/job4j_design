@@ -25,6 +25,10 @@ public class Analizy {
                 }
             }
             for (int i = 0; i < listLog.size(); i += 2) {
+                if (i + 1 == listLog.size()) {
+                    out.println(listLog.get(i) + " Server not Start");
+                    break;
+                }
                 out.println(listLog.get(i) + listLog.get(i + 1));
             }
         } catch (IOException e) {
