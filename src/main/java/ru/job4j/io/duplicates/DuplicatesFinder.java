@@ -13,5 +13,6 @@ public class DuplicatesFinder {
     public static void searchDuplicates(Path root) throws IOException {
         DuplicatesVisitor searcher = new DuplicatesVisitor();
         Files.walkFileTree(root, searcher);
+        searcher.findDuplicates();
     }
 }
