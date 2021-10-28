@@ -15,7 +15,7 @@ public class ArgsName {
         validateValue(args);
         for (String str : args) {
             String[] temp = str.split("=");
-            if (temp.length != 2) {
+            if (temp.length != 2 || temp[0].isEmpty() || temp[1].isEmpty()) {
                 throw new IllegalArgumentException("Wrong arguments, please enter another key"
                         + " and value with delimiter");
             }
