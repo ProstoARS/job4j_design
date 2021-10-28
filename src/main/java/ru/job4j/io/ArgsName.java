@@ -12,15 +12,20 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException();
-        }
+        validateValue(args);
         for (String str : args) {
             String[] temp = str.split("=");
             if (temp.length != 2) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Wrong arguments, please enter another key"
+                        + " and value with delimiter");
             }
             values.put(temp[0].substring(1), temp[1]);
+        }
+    }
+
+    public static void validateValue(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Value not exist. Please enter value");
         }
     }
 
