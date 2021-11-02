@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -26,7 +27,7 @@ public class ConsoleChat {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String userQuest = reader.readLine();
         boolean check = true;
-        while (!userQuest.equals(OUT)) {
+        while (!OUT.equals(userQuest)) {
             System.out.println(userQuest);
             log.add(userQuest);
             if (check) {
@@ -35,10 +36,10 @@ public class ConsoleChat {
                 log.add(botAnswer);
             }
             userQuest = reader.readLine();
-            if (userQuest.equals(STOP)) {
+            if (STOP.equals(userQuest)) {
                 check = false;
             }
-            if (userQuest.equals(CONTINUE)) {
+            if (CONTINUE.equals(userQuest)) {
                 check = true;
             }
         }
@@ -54,14 +55,13 @@ public class ConsoleChat {
     }
 
     private void saveLog(List<String> log) {
-        try (PrintWriter out = new PrintWriter(
-                new BufferedOutputStream(
-                        new FileOutputStream(path)
-                ))) {
+        try (PrintWriter pw = new PrintWriter(
+                new FileWriter(path, StandardCharsets.UTF_8, true))) {
             for (String str : log) {
-                out.println(str);
+                pw.println(str);
             }
         } catch (Exception e) {
+
             e.printStackTrace();
         }
     }
