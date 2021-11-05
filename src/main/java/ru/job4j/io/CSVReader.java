@@ -5,19 +5,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class CSVReader {
-    private static final List<String[]> LIST = new ArrayList<>();
+    private final List<String[]> list = new ArrayList<>();
 
-    public static void handle(ArgsName argsName) {
+    public CSVReader(String[] args) {
+        validate(args);
+    }
+
+    public void handle(ArgsName argsName) {
         try (BufferedInputStream br = new BufferedInputStream(new FileInputStream(argsName.get("path")))) {
             byte[] data = br.readAllBytes();
             Scanner scanner = new Scanner(new ByteArrayInputStream(data)).useDelimiter(System.lineSeparator());
             while (scanner.hasNext()) {
-                LIST.add(scanner.next().split(argsName.get("delimiter")));
+                list.add(scanner.next().split(argsName.get("delimiter")));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] columns = LIST.get(0);
+        String[] columns = list.get(0);
         String[] filter = argsName.get("filter").split(",");
         List<Integer> index = new ArrayList<>();
         for (int i = 0; i < columns.length; i++) {
@@ -28,7 +32,7 @@ public class CSVReader {
             }
         }
         StringBuilder sb = new StringBuilder();
-        for (String[] strings : LIST) {
+        for (String[] strings : list) {
             for (int j = 0; j < index.size(); j++) {
                 sb.append(strings[index.get(j)]);
                 if (j + 1 < index.size()) {
@@ -45,5 +49,20 @@ public class CSVReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void validate(String[] args) {
+        if (args.length != 4) {
+            throw new IllegalArgumentException("Not enough arguments. Please enter: -path=CSV_DOCUMENT"
+                    + " -filter=ENTER_FILTER_COLUMNS"
+                    + " -out=OUTPUT_FOLDER"
+                    + " -delimiter=ENTER_DELIMITER");
+        }
+    }
+
+    public static void main(String[] args) {
+        ArgsName ar = ArgsName.of(args);
+        CSVReader csv = new CSVReader(args);
+                csv.handle(ar);
     }
 }

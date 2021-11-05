@@ -24,9 +24,10 @@ public class CSVReaderTest {
         );
         File file = temporaryFolder.newFile("source.csv");
         File target = temporaryFolder.newFile("target.csv");
-        ArgsName argsName = ArgsName.of(new String[]{
+        String[] arg = new String[]{
                 "-path=" + file.getAbsolutePath(), "-delimiter=;", "-out=" + target.getAbsolutePath(), "-filter=name,age"
-        });
+        };
+        ArgsName argsName = ArgsName.of(arg);
         Files.writeString(file.toPath(), data);
         String expected = String.join(
                 System.lineSeparator(),
@@ -35,8 +36,8 @@ public class CSVReaderTest {
                 "Jack;25",
                 "William;30"
         ).concat(System.lineSeparator());
-        CSVReader.handle(argsName);
+        CSVReader csv = new CSVReader(arg);
+                csv.handle(argsName);
         Assert.assertEquals(expected, Files.readString(target.toPath()));
     }
-
 }
