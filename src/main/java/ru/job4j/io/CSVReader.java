@@ -12,9 +12,8 @@ public class CSVReader {
     }
 
     public void handle(ArgsName argsName) {
-        try (BufferedInputStream br = new BufferedInputStream(new FileInputStream(argsName.get("path")))) {
-            byte[] data = br.readAllBytes();
-            Scanner scanner = new Scanner(new ByteArrayInputStream(data)).useDelimiter(System.lineSeparator());
+           try (Scanner scanner = new Scanner(new FileInputStream(argsName.get("path")))
+                   .useDelimiter(System.lineSeparator())) {
             while (scanner.hasNext()) {
                 list.add(scanner.next().split(argsName.get("delimiter")));
             }
@@ -41,11 +40,17 @@ public class CSVReader {
             }
             sb.append(System.lineSeparator());
         }
+        if (argsName.get("out").equals("stdout")) {
+            System.out.println(sb);
+        } else {
+            writeFile(sb.toString(), argsName.get("out"));
+        }
+    }
 
-        String outString = sb.toString();
+    public void writeFile(String str, String path) {
         try (PrintWriter pw = new PrintWriter(
-                new FileWriter(argsName.get("out"), StandardCharsets.UTF_8))) {
-            pw.print(outString);
+                new FileWriter(path, StandardCharsets.UTF_8))) {
+            pw.print(str);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,7 +60,7 @@ public class CSVReader {
         if (args.length != 4) {
             throw new IllegalArgumentException("Not enough arguments. Please enter: -path=CSV_DOCUMENT"
                     + " -filter=ENTER_FILTER_COLUMNS"
-                    + " -out=OUTPUT_FOLDER"
+                    + " -out=OUTPUT_FOLDER or \"stdout\" for out in console"
                     + " -delimiter=ENTER_DELIMITER");
         }
     }
