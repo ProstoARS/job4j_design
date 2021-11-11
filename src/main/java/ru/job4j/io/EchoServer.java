@@ -3,9 +3,13 @@ package ru.job4j.io;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EchoServer {
-    public static void main(String[] args) throws IOException {
+    private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
+
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             int count = 0;
             while (!server.isClosed()) {
@@ -32,9 +36,13 @@ public class EchoServer {
                         out.flush();
                     }
                     count++;
+                } catch (Exception e) {
+                    LOG.error("IO error :", e);
                 }
             }
             System.out.println("server close");
+        } catch (Exception e) {
+            LOG.error("Socket error :", e);
         }
     }
 }
