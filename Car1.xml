@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<CarTestJson>
+    <model>BMV</model>
+    <color>WHITE</color>
+    <carMileage>60000</carMileage>
+    <actualInspection>false</actualInspection>
+    <inspectionMileage>
+        <mileages>12000</mileages>
+        <mileages>21000</mileages>
+        <mileages>32000</mileages>
+        <mileages>42000</mileages>
+        <mileages>50000</mileages>
+    </inspectionMileage>
+    <Person>
+        <name>Pablo Sanchez</name>
+        <age>41</age>
+        <sex>true</sex>
+    </Person>
+</CarTestJson>
