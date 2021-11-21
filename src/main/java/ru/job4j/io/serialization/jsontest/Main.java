@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        CarTestJson car1 = new CarTestJson("Ford", Color.BLACK, 60000, true,
+        CarTest car1 = new CarTest("Ford", Color.BLACK, 60000, true,
                 List.of(15000, 24500, 36300, 48000, 59000), new Person("Potapov Maxim", 38, true));
 
         final Gson gson = new GsonBuilder().create();
@@ -20,7 +20,7 @@ public class Main {
                 + "\"inspectionMileage\":[12000,21000],"
                 + "\"person\":{\"name\":\"Pablo Sanchez\",\"age\":41,\"sex\":true}}";
 
-        CarTestJson car2 = gson.fromJson(textJson, CarTestJson.class);
+        CarTest car2 = gson.fromJson(textJson, CarTest.class);
         System.out.println(car2);
     }
 }

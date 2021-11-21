@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<carTest model="honda" color="BLUE" carMileage="72000" actualInspection="true">
+    <inspectionMileage>
+        <status>10000</status>
+        <status>15000</status>
+        <status>30000</status>
+        <status>50000</status>
+        <status>65000</status>
+    </inspectionMileage>
+    <person name="Trofimov" age="35" sex="true"/>
+</carTest>
