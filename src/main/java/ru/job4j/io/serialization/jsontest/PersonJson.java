@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Person {
+public class PersonJson {
     @XmlAttribute
     private String name;
     @XmlAttribute
@@ -15,10 +15,10 @@ public class Person {
     @XmlAttribute
     private boolean sex;
 
-    public Person() {
+    public PersonJson() {
     }
 
-    public Person(String name, int age, boolean sex) {
+    public PersonJson(String name, int age, boolean sex) {
         this.name = name;
         this.age = age;
         this.sex = sex;

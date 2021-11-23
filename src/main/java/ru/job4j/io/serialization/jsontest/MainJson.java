@@ -5,10 +5,10 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
-public class Main {
+public class MainJson {
     public static void main(String[] args) {
-        CarTest car1 = new CarTest("Ford", Color.BLACK, 60000, true,
-                List.of(15000, 24500, 36300, 48000, 59000), new Person("Potapov Maxim", 38, true));
+        CarTestJson car1 = new CarTestJson("Ford", Color.BLACK, 60000, true,
+                List.of(15000, 24500, 36300, 48000, 59000), new PersonJson("Potapov Maxim", 38, true));
 
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(car1));
@@ -18,9 +18,9 @@ public class Main {
                 + "\"carMileage\":30000,"
                 + "\"actualInspection\":false,"
                 + "\"inspectionMileage\":[12000,21000],"
-                + "\"person\":{\"name\":\"Pablo Sanchez\",\"age\":41,\"sex\":true}}";
+                + "\"personJson\":{\"name\":\"Pablo Sanchez\",\"age\":41,\"sex\":true}}";
 
-        CarTest car2 = gson.fromJson(textJson, CarTest.class);
+        CarTestJson car2 = gson.fromJson(textJson, CarTestJson.class);
         System.out.println(car2);
     }
 }
