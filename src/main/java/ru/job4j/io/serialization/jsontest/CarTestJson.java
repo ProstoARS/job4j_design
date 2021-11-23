@@ -21,6 +21,30 @@ public class CarTestJson {
         this.personJson = personJson;
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getCarMileage() {
+        return carMileage;
+    }
+
+    public boolean isActualInspection() {
+        return actualInspection;
+    }
+
+    public List<Integer> getInspectionMileage() {
+        return inspectionMileage;
+    }
+
+    public PersonJson getPersonJson() {
+        return personJson;
+    }
+
     @Override
     public String toString() {
         return "CarTest{"
