@@ -13,7 +13,9 @@ import java.util.stream.Collectors;
 public class TypeFinderSwitch {
 
     private final String arg;
+
     private final String attribute;
+
     private final Path source;
 
     public TypeFinderSwitch(String arg, String attribute, Path source) {
