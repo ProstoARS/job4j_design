@@ -31,7 +31,7 @@ public class TypeFinderSwitch {
                 temp = Search.search(source, path -> path.toFile().getName().equals(attribute));
                 break;
             case "mask":
-//                temp = Search.search(source, path -> path)
+                System.out.println("тут пока не знаю что делать");
                 break;
             case "regex":
                 Pattern pattern = Pattern.compile(attribute);
