@@ -9,5 +9,5 @@ fname varchar(255),
 lname varchar(255));
 
 create table person_medical_card(
-person_id int references consumer(id) unique,
-medical_card_id int references product(id) unique);
+person_id int references person(id) unique,
+medical_card_id int references medical_card(id) unique);
