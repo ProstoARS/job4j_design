@@ -12,37 +12,37 @@ create database universam;
  price float);
  
  
-insert into type(name) values ('Молочные продукты');
-insert into type(name) values ('Хлебобулочные изделия');
-insert into type(name) values ('Сыр');
-insert into type(name) values ('Мясо');
-insert into type(name) values ('Десерты');
+insert into type(name) values ('РњРѕР»РѕС‡РЅС‹Рµ РїСЂРѕРґСѓРєС‚С‹');
+insert into type(name) values ('РҐР»РµР±РѕР±СѓР»РѕС‡РЅС‹Рµ РёР·РґРµР»РёСЏ');
+insert into type(name) values ('РЎС‹СЂ');
+insert into type(name) values ('РњСЏСЃРѕ');
+insert into type(name) values ('Р”РµСЃРµСЂС‚С‹');
 
-insert into product(name, type_id, expired_date, price) values ('Ламбер', 3, date '2021-12-31', 895);
-insert into product(name, type_id, expired_date, price) values ('Российский', 3, date '2021-12-3', 355);
-insert into product(name, type_id, expired_date, price) values ('Массдам', 3, date '2022-02-01', 1355);
-insert into product(name, type_id, expired_date, price) values ('Пармезан', 3, date '2022-01-05', 1530);
-insert into product(name, type_id, expired_date, price) values ('Молоко', 1, date '2021-12-20', 85);
-insert into product(name, type_id, expired_date, price) values ('Йогурт', 1, date '2022-01-10', 130);
-insert into product(name, type_id, expired_date, price) values ('Кефир', 1, date '2021-12-26', 70);
-insert into product(name, type_id, expired_date, price) values ('Батон "Городской"', 2, date '2021-12-29', 47);
-insert into product(name, type_id, expired_date, price) values ('Хлеб "Дарницкий"', 2, date '2022-01-04', 58);
-insert into product(name, type_id, expired_date, price) values ('Хлеб "Столичный"', 2, date '2021-12-23', 41);
-insert into product(name, type_id, expired_date, price) values ('Батон "Нарезной"', 2, date '2022-01-12', 35);
-insert into product(name, type_id, expired_date, price) values ('Баранина', 4, date '2022-01-17', 750);
-insert into product(name, type_id, expired_date, price) values ('Свинина', 4, date '2022-01-03', 450);
-insert into product(name, type_id, expired_date, price) values ('Говядина', 4, date '2021-12-22', 500);
-insert into product(name, type_id, expired_date, price) values ('Курица', 4, date '2022-01-08', 322);
-insert into product(name, type_id, expired_date, price) values ('Пироженое "Корзиночка"', 5, date '2022-01-01', 85);
-insert into product(name, type_id, expired_date, price) values ('Пироженое "Наполеон"', 5, date '2021-12-30', 110);
-insert into product(name, type_id, expired_date, price) values ('Мороженое "Сахарная трубочка"', 5, date '2021-12-28', 85);
-insert into product(name, type_id, expired_date, price) values ('Мороженое "Пломбир"', 5, date '2021-12-24', 45);
-insert into product(name, type_id, expired_date, price) values ('Мороженое "Вафельный стаканчик"', 5, date '2022-01-02', 63);
-insert into product(name, type_id, expired_date, price) values ('Торт "Трухлявый пень"', 5, date '2022-01-15', 430);
+insert into product(name, type_id, expired_date, price) values ('Р›Р°РјР±РµСЂ', 3, date '2021-12-31', 895);
+insert into product(name, type_id, expired_date, price) values ('Р РѕСЃСЃРёР№СЃРєРёР№', 3, date '2021-12-3', 355);
+insert into product(name, type_id, expired_date, price) values ('РњР°СЃСЃРґР°Рј', 3, date '2022-02-01', 1355);
+insert into product(name, type_id, expired_date, price) values ('РџР°СЂРјРµР·Р°РЅ', 3, date '2022-01-05', 1530);
+insert into product(name, type_id, expired_date, price) values ('РњРѕР»РѕРєРѕ', 1, date '2021-12-20', 85);
+insert into product(name, type_id, expired_date, price) values ('Р™РѕРіСѓСЂС‚', 1, date '2022-01-10', 130);
+insert into product(name, type_id, expired_date, price) values ('РљРµС„РёСЂ', 1, date '2021-12-26', 70);
+insert into product(name, type_id, expired_date, price) values ('Р‘Р°С‚РѕРЅ "Р“РѕСЂРѕРґСЃРєРѕР№"', 2, date '2021-12-29', 47);
+insert into product(name, type_id, expired_date, price) values ('РҐР»РµР± "Р”Р°СЂРЅРёС†РєРёР№"', 2, date '2022-01-04', 58);
+insert into product(name, type_id, expired_date, price) values ('РҐР»РµР± "РЎС‚РѕР»РёС‡РЅС‹Р№"', 2, date '2021-12-23', 41);
+insert into product(name, type_id, expired_date, price) values ('Р‘Р°С‚РѕРЅ "РќР°СЂРµР·РЅРѕР№"', 2, date '2022-01-12', 35);
+insert into product(name, type_id, expired_date, price) values ('Р‘Р°СЂР°РЅРёРЅР°', 4, date '2022-01-17', 750);
+insert into product(name, type_id, expired_date, price) values ('РЎРІРёРЅРёРЅР°', 4, date '2022-01-03', 450);
+insert into product(name, type_id, expired_date, price) values ('Р“РѕРІСЏРґРёРЅР°', 4, date '2021-12-22', 500);
+insert into product(name, type_id, expired_date, price) values ('РљСѓСЂРёС†Р°', 4, date '2022-01-08', 322);
+insert into product(name, type_id, expired_date, price) values ('РџРёСЂРѕР¶РµРЅРѕРµ "РљРѕСЂР·РёРЅРѕС‡РєР°"', 5, date '2022-01-01', 85);
+insert into product(name, type_id, expired_date, price) values ('РџРёСЂРѕР¶РµРЅРѕРµ "РќР°РїРѕР»РµРѕРЅ"', 5, date '2021-12-30', 110);
+insert into product(name, type_id, expired_date, price) values ('РњРѕСЂРѕР¶РµРЅРѕРµ "РЎР°С…Р°СЂРЅР°СЏ С‚СЂСѓР±РѕС‡РєР°"', 5, date '2021-12-28', 85);
+insert into product(name, type_id, expired_date, price) values ('РњРѕСЂРѕР¶РµРЅРѕРµ "РџР»РѕРјР±РёСЂ"', 5, date '2021-12-24', 45);
+insert into product(name, type_id, expired_date, price) values ('РњРѕСЂРѕР¶РµРЅРѕРµ "Р’Р°С„РµР»СЊРЅС‹Р№ СЃС‚Р°РєР°РЅС‡РёРє"', 5, date '2022-01-02', 63);
+insert into product(name, type_id, expired_date, price) values ('РўРѕСЂС‚ "РўСЂСѓС…Р»СЏРІС‹Р№ РїРµРЅСЊ"', 5, date '2022-01-15', 430);
 
-select * from product join type on product.type_id = type.id where type.name = 'Сыр';
+select * from product join type on product.type_id = type.id where type.name = 'РЎС‹СЂ';
 
-select * from product where name like '%Мороженое%';
+select * from product where name like '%РњРѕСЂРѕР¶РµРЅРѕРµ%';
 
 select * from product where expired_date < current_date;
 
@@ -50,7 +50,7 @@ select * from product where price = (select max(price) from product);
 
 select t.name, count(p.type_id) from product p join type t on p.type_id = t.id group by t.name;
 
-select * from product p join type t on p.type_id = t.id where t.name = 'Молочные продукты' or t.name = 'Сыр';
+select * from product p join type t on p.type_id = t.id where t.name = 'РњРѕР»РѕС‡РЅС‹Рµ РїСЂРѕРґСѓРєС‚С‹' or t.name = 'РЎС‹СЂ';
 
 select t.name from product p join type t on p.type_id = t.id group by t.name having count(p.type_id) < 5;
 
