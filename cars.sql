@@ -41,12 +41,32 @@ values ('Toyota Corolla', 1, 1, 1);
 insert into car (name, body_id, engine_id, transmission_id)
 values ('Saab 9-5', 2, 3, 2);
 
-select car.name as car, b.name as body, e.name as engine, t.name as transmission 
-from car join body b on car.body_id = b.id 
-join engine e on car.engine_id = e.id join transmission t on car.transmission_id = t.id;
+select car.name as car,
+b.name as body,
+e.name as engine,
+t.name as transmission
+from car
+join body b
+on car.body_id = b.id
+join engine e
+on car.engine_id = e.id
+join transmission t
+on car.transmission_id = t.id;
 
-select b.name as unused_body from body b left join car c on c.body_id = b.id where c.body_id is null;
+select b.name as unused_body
+from body b
+left join car c
+on c.body_id = b.id
+where c.body_id is null;
 
-select e.name as unused_engine from engine e left join car c on c.engine_id = e.id where c.engine_id is null;
+select e.name as unused_engine
+from engine e
+left join car c
+on c.engine_id = e.id
+where c.engine_id is null;
 
-select t.name as unused_transmission from transmission t left join car c on c.transmission_id = t.id where c.transmission_id is null;
+select t.name as unused_transmission
+from transmission t
+left join car c
+on c.transmission_id = t.id
+where c.transmission_id is null;
