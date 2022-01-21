@@ -20,7 +20,17 @@ public class ImportDB {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(a -> {
+                if (!a.contains(";")) {
+                    throw new IllegalArgumentException();
+                }
                 String[] subStr = a.split(";");
+                if (subStr[0].equals(" ")
+                        || subStr[0].equals("")
+                        || subStr[1].equals("")
+                        || subStr[1].equals(" ")
+                        || subStr.length != 2) {
+                    throw new IllegalArgumentException();
+                }
                 users.add(new User(subStr[0], subStr[1]));
             });
         }
