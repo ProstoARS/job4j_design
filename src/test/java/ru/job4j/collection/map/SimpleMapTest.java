@@ -1,10 +1,7 @@
 package ru.job4j.collection.map;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 public class SimpleMapTest {
 
@@ -13,7 +10,7 @@ public class SimpleMapTest {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("one", 1);
         String rsl = map.iterator().next();
-        assertThat(rsl, is("one"));
+        assertThat(rsl).isEqualTo("one");
     }
 
     @Test
@@ -21,7 +18,7 @@ public class SimpleMapTest {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("one", 1);
         map.put("two", 2);
-        assertFalse(map.put("two", 2));
+        assertThat(map.put("two", 2)).isFalse();
     }
 
     @Test
@@ -34,7 +31,7 @@ public class SimpleMapTest {
         map.put("five ", 5);
         map.put("six ", 6);
         map.put("seven ", 7);
-        assertThat(16, is(map.tableSize()));
+        assertThat(16).isEqualTo(map.tableSize());
     }
 
     @Test
@@ -42,7 +39,7 @@ public class SimpleMapTest {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("one", 1);
         Integer rsl = map.get("one");
-        assertThat(rsl, is(1));
+        assertThat(rsl).isEqualTo(1);
     }
 
     @Test
@@ -50,7 +47,7 @@ public class SimpleMapTest {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("one", 1);
         map.put("two", 2);
-        assertTrue(map.remove("one"));
+        assertThat(map.remove("one")).isTrue();
     }
 
     @Test
@@ -59,7 +56,7 @@ public class SimpleMapTest {
         map.put("one", 1);
         map.put("two", 2);
         map.remove("one");
-        assertThat(null, is(map.get("one")));
+        assertThat(map.get("one")).isNull();
     }
 
     @Test
@@ -68,7 +65,7 @@ public class SimpleMapTest {
         map.put("one", 1);
         map.put("two", 2);
         map.remove("one");
-        assertThat(1, is(map.size()));
+        assertThat(1).isEqualTo(map.size());
     }
 
     @Test
@@ -76,14 +73,14 @@ public class SimpleMapTest {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("one", 1);
         map.put("two", 2);
-        assertFalse(map.remove("three"));
+        assertThat(map.remove("three")).isFalse();
     }
 
     @Test
     public void whenPutIfSameBucket() {
         SimpleMap<String, Integer> map = new SimpleMap<>();
         map.put("six ", 6);
-        assertFalse(map.put("four", 4));
+        assertThat(map.put("four", 4)).isFalse();
     }
 
     @Test
@@ -93,6 +90,6 @@ public class SimpleMapTest {
         map.remove(2);
         map.put(2, "два");
         String rsl = "два";
-        assertThat(rsl, is(map.get(2)));
+        assertThat(rsl).isEqualTo(map.get(2));
     }
 }

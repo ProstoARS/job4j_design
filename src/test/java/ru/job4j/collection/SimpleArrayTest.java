@@ -1,9 +1,7 @@
 package ru.job4j.collection;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.is;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -16,7 +14,7 @@ public class SimpleArrayTest {
         SimpleArray<String> array = new SimpleArray<>();
         array.add("first");
         String rsl = array.get(0);
-        assertThat(rsl, is("first"));
+        assertThat(rsl).isEqualTo("first");
     }
 
     @Test
@@ -24,7 +22,7 @@ public class SimpleArrayTest {
         SimpleArray<String> array = new SimpleArray<>();
         array.add("first");
         String rsl = array.iterator().next();
-        assertThat(rsl, is("first"));
+        assertThat(rsl).isEqualTo("first");
     }
 
     @Test
@@ -34,34 +32,38 @@ public class SimpleArrayTest {
         array.add("second");
         array.add("third");
         String rsl = array.get(2);
-        assertThat(rsl, is("third"));
+        assertThat(rsl).isEqualTo("third");
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void whenGetEmpty() {
         SimpleArray<String> array = new SimpleArray<>();
-        array.get(0);
+        assertThatThrownBy(() -> array.get(0))
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void whenGetOutBound() {
         SimpleArray<String> array = new SimpleArray<>();
         array.add("first");
-        array.get(1);
+        assertThatThrownBy(() -> array.get(1))
+                .isInstanceOf(IndexOutOfBoundsException.class);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void whenGetEmptyFromIt() {
         SimpleArray<String> array = new SimpleArray<>();
-        array.iterator().next();
+        assertThatThrownBy(() -> array.iterator().next())
+                .isInstanceOf(NoSuchElementException.class);
     }
 
-    @Test(expected = ConcurrentModificationException.class)
+    @Test
     public void whenCorruptedIt() {
         SimpleArray<String> array = new SimpleArray<>();
         array.add("first");
         Iterator<String> it = array.iterator();
         array.add("second");
-        it.next();
+        assertThatThrownBy(it::next)
+                .isInstanceOf(ConcurrentModificationException.class);
     }
 }

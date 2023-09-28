@@ -1,37 +1,39 @@
 package ru.job4j.io;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.is;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 public class ArgsNameTest {
 
     @Test
     public void whenGetFirst() {
         ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
-        assertThat(jvm.get("Xmx"), is("512"));
+        assertThat(jvm.get("Xmx")).isEqualTo("512");
     }
 
     @Test
     public void whenGetFirstReorder() {
         ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx=512"});
-        assertThat(jvm.get("Xmx"), is("512"));
+        assertThat(jvm.get("Xmx")).isEqualTo("512");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenGetNotExist() {
-        ArgsName jvm = ArgsName.of(new String[] {});
-        jvm.get("Xmx");
+        assertThatThrownBy(() -> ArgsName.of(new String[]{}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .message()
+                .isNotEmpty();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenWrongSomeArgument() {
-        ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="});
+        assertThatThrownBy(() -> ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="}))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenWrongKey() {
-        ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "=512"});
+        assertThatThrownBy(() -> ArgsName.of(new String[] {"-encoding=UTF-8", "=512"}))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

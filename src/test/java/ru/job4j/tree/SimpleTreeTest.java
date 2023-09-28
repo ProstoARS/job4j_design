@@ -1,8 +1,7 @@
 package ru.job4j.tree;
 
-import org.junit.Test;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 
 public class SimpleTreeTest {
@@ -15,9 +14,7 @@ public class SimpleTreeTest {
         tree.add(4, 5);
         tree.add(5, 6);
         assertThat(
-                tree.findBy(6).isPresent(),
-                is(true)
-        );
+                tree.findBy(6).isPresent()).isTrue();
     }
 
     @Test
@@ -25,9 +22,7 @@ public class SimpleTreeTest {
         Tree<Integer> tree = new SimpleTree<>(1);
         tree.add(1, 2);
         assertThat(
-                tree.findBy(7).isPresent(),
-                is(false)
-        );
+                tree.findBy(7).isPresent()).isFalse();
     }
 
     @Test
@@ -38,7 +33,7 @@ public class SimpleTreeTest {
         tree.add(1, 4);
         tree.add(4, 5);
         tree.add(5, 6);
-        assertFalse(tree.add(2, 6));
+        assertThat(tree.add(2, 6)).isFalse();
     }
 
     @Test
@@ -48,7 +43,7 @@ public class SimpleTreeTest {
         tree.add(1, 3);
         tree.add(2, 4);
         tree.add(2, 5);
-        assertTrue(tree.isBinary());
+        assertThat(tree.isBinary()).isTrue();
     }
 
     @Test
@@ -59,7 +54,7 @@ public class SimpleTreeTest {
         tree.add(2, 4);
         tree.add(2, 5);
         tree.add(2, 6);
-        assertFalse(tree.isBinary());
+        assertThat(tree.isBinary()).isFalse();
     }
 
 }

@@ -1,23 +1,17 @@
 package ru.job4j.io;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import ru.job4j.io.Analizy;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import java.io.*;
-
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.is;
+import java.nio.file.Path;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class AnalizyTest {
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
 
     @Test
-    public void whenServerNotWork() throws IOException {
-        File source = folder.newFile("source.txt");
-        File target = folder.newFile("target.txt");
+    public void whenServerNotWork(@TempDir Path tempDir) throws IOException {
+        File source = tempDir.resolve("source.txt").toFile();
+        File target = tempDir.resolve("target.txt").toFile();
         try (PrintWriter out = new PrintWriter(source)) {
             out.println("200 10:56:01");
             out.println("200 10:57:01");
@@ -35,13 +29,13 @@ public class AnalizyTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        assertThat(rsl.toString(), is("10:58:01;10:59:01;11:02:01;11:11:02;"));
+        assertThat(rsl.toString()).isEqualTo("10:58:01;10:59:01;11:02:01;11:11:02;");
     }
 
     @Test
-    public void whenServerNotShutdown() throws IOException {
-        File source = folder.newFile("source.txt");
-        File target = folder.newFile("target.txt");
+    public void whenServerNotShutdown(@TempDir Path tempDir) throws IOException {
+        File source = tempDir.resolve("source.txt").toFile();
+        File target = tempDir.resolve("target.txt").toFile();
         try (PrintWriter out = new PrintWriter(source)) {
             out.println("200 10:56:01");
             out.println("200 10:57:01");
@@ -55,13 +49,13 @@ public class AnalizyTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        assertThat(rsl.toString(), is(""));
+        assertThat(rsl.toString()).isEqualTo("");
     }
 
     @Test
-    public void whenServerShutdown() throws IOException {
-        File source = folder.newFile("source.txt");
-        File target = folder.newFile("target.txt");
+    public void whenServerShutdown(@TempDir Path tempDir) throws IOException {
+        File source = tempDir.resolve("source.txt").toFile();
+        File target = tempDir.resolve("target.txt").toFile();
         try (PrintWriter out = new PrintWriter(source)) {
             out.println("200 10:56:01");
             out.println("200 10:57:01");
@@ -74,6 +68,6 @@ public class AnalizyTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        assertThat(rsl.toString(), is("10:58:01; Server not Start"));
+        assertThat(rsl.toString()).isEqualTo("10:58:01; Server not Start");
     }
 }
